@@ -1,0 +1,27 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "Luma"
+include(":app")
+include(":core:model")
+include(":core:planning")
+include(":core:ai")
+include(":core:data")
+include(":core:designsystem")
+include(":feature:today")
+include(":feature:plans")
+include(":feature:grow")
+include(":feature:luma")
