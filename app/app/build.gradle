@@ -1,0 +1,74 @@
+plugins {
+    id "com.android.application"
+    id "org.jetbrains.kotlin.android"
+    id "org.jetbrains.kotlin.plugin.compose"
+    id "org.jetbrains.kotlin.plugin.serialization"
+}
+
+android {
+    namespace "com.luma.collegelife"
+    compileSdk 36
+    buildToolsVersion "36.0.0"
+
+    defaultConfig {
+        applicationId "com.luma.collegelife"
+        minSdk 26
+        targetSdk 36
+        versionCode 4
+        versionName "1.1.0-alpha02"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "LUMA_API_BASE_URL", "\"${project.findProperty("LUMA_API_BASE_URL") ?: ""}\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        compose true
+        buildConfig true
+    }
+}
+
+dependencies {
+    implementation platform("androidx.compose:compose-bom:2026.06.01")
+    implementation "androidx.activity:activity-compose:1.13.0"
+    implementation "androidx.compose.material3:material3"
+    implementation "androidx.compose.material:material-icons-extended"
+    implementation "androidx.compose.ui:ui"
+    implementation "androidx.compose.ui:ui-tooling-preview"
+    implementation "androidx.navigation:navigation-compose:2.9.8"
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.10.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.10.0"
+    implementation "androidx.datastore:datastore-preferences:1.2.1"
+    implementation "androidx.room:room-runtime:2.8.4"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0"
+
+    implementation project(":core:model")
+    implementation project(":core:planning")
+    implementation project(":core:ai")
+    implementation project(":core:data")
+    implementation project(":core:designsystem")
+    implementation project(":feature:today")
+    implementation project(":feature:plans")
+    implementation project(":feature:grow")
+    implementation project(":feature:luma")
+
+    debugImplementation "androidx.compose.ui:ui-tooling"
+    debugImplementation "androidx.compose.ui:ui-test-manifest"
+
+    testImplementation "junit:junit:4.13.2"
+}
